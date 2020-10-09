@@ -1,5 +1,7 @@
 ## IMDEA rplidar A3 SDK for MATLAB
 
+![example_image](example.png)
+
 #### How to build
 
 1. Go into the Take_measurements foder
