@@ -21,6 +21,7 @@ Take_measurements/output/Linux/Release/measure
 1. Make sure both USB ports of the rplidar are connected
 2. Copy the measure binary anywere or just go to the ouput (Take_measurements/output/Linux/Release/measure) folder
 3. Run it
+
 **Note:** The program assumes that the lidar is on /dev/ttyUSB0, if that is not the case you can call the program with the correct path
 ```
 sudo ./measure
