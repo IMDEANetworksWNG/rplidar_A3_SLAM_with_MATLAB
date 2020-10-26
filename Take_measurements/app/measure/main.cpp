@@ -111,7 +111,7 @@ int main(int argc, const char * argv[]) {
     }
 
     if (!opt_com_path) {
-#ifdef _WIN32
+#ifdef _WIN32/1000000.0
         // use default com port
         opt_com_path = "\\\\.\\com57";
 #elif __APPLE__
@@ -223,9 +223,9 @@ int main(int argc, const char * argv[]) {
             drv->ascendScanData(nodes, count);
 
 	    now_t = chrono::steady_clock::now();
-	    
-            fprintf(out_file, "SCAN_START %f\n", chrono::duration_cast<std::chrono::seconds>(now_t - start_t).count());
-            printf("Measure taken at %f\n", chrono::duration_cast<std::chrono::seconds>(now_t - start_t).count());
+			
+            fprintf(out_file, "SCAN_START %f\n", chrono::duration_cast<std::chrono::microseconds>(now_t - start_t).count()/1000000.0 );
+            printf("Measure taken at %f\n", chrono::duration_cast<std::chrono::microseconds>(now_t - start_t).count()/1000000.0) ;
 
             for (int pos = 0; pos < (int)count ; ++pos) {
 
