@@ -221,8 +221,8 @@ int main(int argc, const char * argv[]) {
 
             drv->ascendScanData(nodes, count);
 
-            fprintf(out_file, "SCAN_START %f\n", (double)(clock() - start_t) / CLOCKS_PER_SEC);
-            printf("Measure taken at %f\n", (double)(clock() - start_t) / CLOCKS_PER_SEC);
+            fprintf(out_file, "SCAN_START %f\n", (clock() - start_t) / (double) CLOCKS_PER_SEC);
+            printf("Measure taken at %f\n", (clock() - start_t) / (double) CLOCKS_PER_SEC);
 
             for (int pos = 0; pos < (int)count ; ++pos) {
 
