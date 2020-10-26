@@ -26,7 +26,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <chrono>
 
 using namespace std;
 
@@ -89,7 +89,8 @@ int main(int argc, const char * argv[]) {
     _u32         baudrateArray[2] = {115200, 256000};
     _u32         opt_com_baudrate = 0;
     u_result     op_result;
-    clock_t start_t;
+    chrono::steady_clock::time_point start_t;
+    chrono::steady_clock::time_point now_t;
 
     const char * output_filename = "output.txt";
 
@@ -209,8 +210,8 @@ int main(int argc, const char * argv[]) {
     FILE * out_file;
     out_file = fopen(output_filename, "w");
 
-    start_t = clock();
-
+    start_t = chrono::steady_clock::now();
+	
     while (1) {
         rplidar_response_measurement_node_hq_t nodes[8192];
         size_t   count = _countof(nodes);
@@ -221,8 +222,10 @@ int main(int argc, const char * argv[]) {
 
             drv->ascendScanData(nodes, count);
 
-            fprintf(out_file, "SCAN_START %f\n", (clock() - start_t) / (double) CLOCKS_PER_SEC);
-            printf("Measure taken at %f\n", (clock() - start_t) / (double) CLOCKS_PER_SEC);
+	    now_t = chrono::steady_clock::now();
+	    
+            fprintf(out_file, "SCAN_START %f\n", chrono::duration_cast<std::chrono::seconds>(now_t - start_t).count());
+            printf("Measure taken at %f\n", chrono::duration_cast<std::chrono::seconds>(now_t - start_t).count());
 
             for (int pos = 0; pos < (int)count ; ++pos) {
 
